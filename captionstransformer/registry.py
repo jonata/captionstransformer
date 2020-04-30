@@ -20,3 +20,8 @@ REGISTRY = {'transcript':{'id': 'transcript',
                     'writer': srt.Writer,
                     'mimetype': 'text/plain',
                     'extension': '.srt'}}
+            'SAMI': {'id': 'SAMI',
+                    'reader': sami.Reader,
+                    'writer': sami.Writer,
+                    'mimetype': 'text/plain',
+                    'extension': '.smi'}}

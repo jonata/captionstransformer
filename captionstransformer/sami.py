@@ -1,6 +1,5 @@
 from captionstransformer import core
 from bs4 import BeautifulSoup
-import bleach
 from datetime import datetime, timedelta
 
 

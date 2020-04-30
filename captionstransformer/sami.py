@@ -23,15 +23,15 @@ class Reader(core.Reader):
             prev_line_text = ''
             for sync in soup.sami.body.find_all('sync'):
                 this_line_time = self.get_start(sync)
-                linerepr = repr(sync)
-                line_clean = bleach.clean(linerepr, tags=['br'], strip=True)
-                this_line_text = line_clean.replace('<br>', '\n')
-                if this_line_text.endswith('\n'):
-                    this_line_text = this_line_text[:-1]
+                linerepr = repr(str(sync.p)[1:].split('<',1)[0].split('>',1)[-1])[1:-1]
+                this_line_text = linerepr.replace('<br>', '\n').strip()
+                if this_line_text.endswith('\\t'):
+                    this_line_text = this_line_text[:-2]
+                if this_line_text.endswith('\\n'):
+                    this_line_text = this_line_text[:-2]
                 if prev_line_text != '':
                     caption = core.Caption()
                     caption.start = prev_line_time
-                    print(caption.start)
                     caption.end = this_line_time
                     caption.text = prev_line_text
                     self.add_caption(caption)
